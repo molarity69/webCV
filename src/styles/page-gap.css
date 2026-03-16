@@ -1,0 +1,10 @@
+/**
+ * @file page-gap.css
+ * @description Utility class that centralizes the page bottom spacing used by the AppLayout.
+ */
+
+/* Semantic spacing utility used to provide consistent bottom margin + padding for the main content. */
+.page-bottom-gap {
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+}

@@ -1,0 +1,115 @@
+📂 Project Structure
+====================
+
+webCV/
+├── .gitignore                      → Git ignore rules
+├── DeploymentGuide.txt             → Deployment instructions
+├── FileDescription.txt             → File descriptions and quick start guide
+├── ProjectStructure.txt            → This file
+├── index.html                      → HTML entry point (development)
+├── package.json                    → Project dependencies and scripts
+├── tailwind.config.js              → Tailwind CSS configuration
+├── tsconfig.json                   → TypeScript configuration
+│
+├── dist/                           → Production build output
+│   ├── index.html
+│   ├── main-JZCSNHUQ.js
+│   └── main-MIYZE6ER.css
+│
+├── scripts/
+│   └── build.mjs                   → Custom esbuild build script
+│
+└── src/                            → Source code
+    ├── App.tsx                      → Root application component
+    ├── main.tsx                     → Application entry point
+    ├── shadcn.css                   → shadcn/ui base styles
+    │
+    ├── components/
+    │   ├── common/                  → Shared/reusable components
+    │   │   ├── SocialLinks.tsx
+    │   │   └── VisitorCounter.tsx
+    │   │
+    │   ├── layout/                  → Layout and navigation components
+    │   │   ├── AppLayout.tsx
+    │   │   ├── Sidebar.tsx
+    │   │   └── ThemeSwitcher.tsx
+    │   │
+    │   ├── sections/                → Page content sections
+    │   │   ├── ContactSection.tsx
+    │   │   ├── EducationSection.tsx
+    │   │   ├── ExperienceSection.tsx
+    │   │   ├── FunFactsSection.tsx
+    │   │   ├── HeroSection.tsx
+    │   │   ├── ProjectsSection.tsx
+    │   │   ├── SkillsSection.tsx
+    │   │   └── TestimonialsSection.tsx
+    │   │
+    │   ├── terminal/                → Terminal easter egg feature
+    │   │   └── TerminalEasterEgg.tsx
+    │   │
+    │   └── ui/                      → shadcn/ui component library
+    │       ├── accordion.tsx
+    │       ├── alert-dialog.tsx
+    │       ├── alert.tsx
+    │       ├── aspect-ratio.tsx
+    │       ├── avatar.tsx
+    │       ├── badge.tsx
+    │       ├── breadcrumb.tsx
+    │       ├── button.tsx
+    │       ├── calendar.tsx
+    │       ├── card.tsx
+    │       ├── carousel.tsx
+    │       ├── chart.tsx
+    │       ├── checkbox.tsx
+    │       ├── collapsible.tsx
+    │       ├── command.tsx
+    │       ├── context-menu.tsx
+    │       ├── dialog.tsx
+    │       ├── drawer.tsx
+    │       ├── dropdown-menu.tsx
+    │       ├── form.tsx
+    │       ├── hover-card.tsx
+    │       ├── input-otp.tsx
+    │       ├── input.tsx
+    │       ├── label.tsx
+    │       ├── menubar.tsx
+    │       ├── navigation-menu.tsx
+    │       ├── pagination.tsx
+    │       ├── popover.tsx
+    │       ├── progress.tsx
+    │       ├── radio-group.tsx
+    │       ├── resizable.tsx
+    │       ├── scroll-area.tsx
+    │       ├── select.tsx
+    │       ├── separator.tsx
+    │       ├── sheet.tsx
+    │       ├── sidebar.tsx
+    │       ├── skeleton.tsx
+    │       ├── slider.tsx
+    │       ├── sonner.tsx
+    │       ├── switch.tsx
+    │       ├── table.tsx
+    │       ├── tabs.tsx
+    │       ├── textarea.tsx
+    │       ├── toast.tsx
+    │       ├── toaster.tsx
+    │       ├── toggle-group.tsx
+    │       ├── toggle.tsx
+    │       └── tooltip.tsx
+    │
+    ├── hooks/                       → Custom React hooks
+    │   ├── use-mobile.tsx
+    │   └── use-toast.ts
+    │
+    ├── lib/                         → Utility functions
+    │   └── utils.ts
+    │
+    ├── pages/                       → Page-level components
+    │   └── Home.tsx
+    │
+    ├── styles/                      → Global stylesheets
+    │   ├── page-gap.css
+    │   └── theme.css
+    │
+    └── theme/                       → Theme management
+        └── ThemeProvider.tsx
