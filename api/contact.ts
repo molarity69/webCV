@@ -73,11 +73,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const { name, email, subject, message } = req.body || {};
 
   if (!name || !email || !subject || !message) {
-    return res
-      .status(400)
-      .json({
-        error: 'All fields are required (name, email, subject, message).',
-      });
+    return res.status(400).json({
+      error: 'All fields are required (name, email, subject, message).',
+    });
   }
 
   if (!isValidEmail(email)) {
@@ -116,7 +114,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: `CV Contact Form <${process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev'}>`,
+        from: `CV Contact Form <${process.env.RESEND_FROM_EMAIL || 'contact@mail.emmanouil-georgiou.dev'}>`,
         to: [process.env.CONTACT_EMAIL || 'georgiouemm@gmail.com'],
         subject: `[CV Contact] ${cleanSubject}`,
         html: `
