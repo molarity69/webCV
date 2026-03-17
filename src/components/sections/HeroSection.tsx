@@ -23,7 +23,7 @@ export const HeroSection: React.FC = () => {
     <section
       id="home"
       aria-label="Introduction and overview"
-      className="relative isolate overflow-hidden border-b border-[var(--color-border-soft)] bg-[var(--color-bg)] px-4 pb-16 pt-24 text-[var(--color-text-primary)] sm:px-6 lg:px-10"
+      className="relative isolate overflow-hidden border-b border-[var(--color-border-soft)] bg-[var(--color-bg)] px-4 pb-16 pt-20 text-[var(--color-text-primary)] sm:px-6 lg:px-10"
     >
       <div className="mx-auto flex w-full max-w-6xl flex-col items-stretch gap-10 md:flex-row md:items-stretch">
         {/* Text column */}
