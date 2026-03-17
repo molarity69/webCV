@@ -86,7 +86,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const mainClassName = clsx(
     // Use full viewport height for the main area but avoid extra bottom padding that creates
     // a large scrollable gap when page content is shorter than the viewport.
-    'min-h-screen flex-1 bg-[var(--color-bg)] text-[var(--color-text-primary)] transition-all duration-300',
+    'min-h-screen w-full min-w-0 flex-1 overflow-x-clip bg-[var(--color-bg)] text-[var(--color-text-primary)] transition-all duration-300',
     'pt-20 pb-10 px-4 sm:px-8 md:pt-20',
     isCollapsed ? 'md:ml-20' : 'md:ml-64',
   )
@@ -97,7 +97,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   )
 
   return (
-    <div className="flex min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <div className="flex min-h-screen w-full overflow-x-hidden bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Sidebar
         isCollapsed={isCollapsed}
         onToggleCollapse={() => setIsCollapsed((prev) => !prev)}
@@ -130,7 +130,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
       {/* Main scrollable content */}
       <main className={mainClassName}>
-        <div className="mx-auto flex max-w-6xl flex-col gap-12">{children}</div>
+        <div className="mx-auto flex w-full max-w-6xl min-w-0 flex-col gap-12">{children}</div>
       </main>
 
       {/* Hidden terminal easter egg overlay & trigger */}
