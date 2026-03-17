@@ -1,16 +1,16 @@
 # ============================================================
 # CI/CD Pipeline — Build, Lint & Deploy to Vercel
 # ============================================================
-# Triggers on pushes and PRs to main, staging, and develop.
-# Deploys production on main; preview on all other branches.
+# Triggers on pushes and PRs to master, staging, and develop.
+# Deploys production on master; preview on all other branches.
 
 name: Deploy to Vercel
 
 on:
   push:
-    branches: [main, staging, develop]
+    branches: [master, staging, develop]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -57,17 +57,17 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel
 
-      # ── Deploy Preview (non-main branches) ──
+      # ── Deploy Preview (non-master branches) ──
       - name: Deploy Preview to Vercel
-        if: github.ref != 'refs/heads/main'
+        if: github.ref != 'refs/heads/master'
         run: |
           vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
           vercel build --token=${{ secrets.VERCEL_TOKEN }}
           vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
-      # ── Deploy Production (main branch only) ──
+      # ── Deploy Production (master branch only) ──
       - name: Deploy Production to Vercel
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         run: |
           vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
           vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
