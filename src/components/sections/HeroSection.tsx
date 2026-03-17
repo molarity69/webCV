@@ -25,11 +25,11 @@ export const HeroSection: React.FC = () => {
       aria-label="Introduction and overview"
       className="relative isolate overflow-hidden border-b border-[var(--color-border-soft)] bg-[var(--color-bg)] px-4 pb-16 pt-24 text-[var(--color-text-primary)] sm:px-6 lg:px-10"
     >
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 md:flex-row md:items-stretch">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-stretch gap-10 md:flex-row md:items-stretch">
         {/* Text column */}
-        <div className="min-w-0 flex-1 space-y-6">
+        <div className="w-full min-w-0 flex-1 space-y-6">
           <div>
-            <h1 className="text-balance font-['Syne'] text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="text-balance break-words font-['Syne'] text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
               <span className="hero-name-gradient bg-clip-text text-transparent">
                 Emmanouil Georgiou
               </span>
@@ -39,7 +39,7 @@ export const HeroSection: React.FC = () => {
             </p>
           </div>
 
-          <p className="max-w-xl text-sm leading-relaxed text-[var(--color-text-primary)] sm:text-base">
+          <p className="max-w-xl break-words text-[0.85rem] leading-relaxed text-[var(--color-text-primary)] sm:text-base">
             <em>
               "Full Stack Engineer with 5+ years of shipping real things — from
               IoT defibrillator networks, to high-traffic platforms serving 2.5
@@ -79,7 +79,7 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Photo column with edge-fade effect */}
-        <div className="relative flex w-full min-w-0 flex-1 items-center justify-center">
+        <div className="relative hidden w-full min-w-0 flex-1 items-center justify-center md:flex">
           {/* Ambient glow behind the photo */}
           <div
             aria-hidden="true"
