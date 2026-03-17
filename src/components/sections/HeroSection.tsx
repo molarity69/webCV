@@ -25,9 +25,9 @@ export const HeroSection: React.FC = () => {
       aria-label="Introduction and overview"
       className="relative isolate overflow-hidden border-b border-[var(--color-border-soft)] bg-[var(--color-bg)] px-4 pb-16 pt-24 text-[var(--color-text-primary)] sm:px-6 lg:px-10"
     >
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 md:flex-row md:items-stretch">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 md:flex-row md:items-stretch">
         {/* Text column */}
-        <div className="flex-1 space-y-6">
+        <div className="min-w-0 flex-1 space-y-6">
           <div>
             <h1 className="text-balance font-['Syne'] text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
               <span className="hero-name-gradient bg-clip-text text-transparent">
@@ -79,7 +79,7 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Photo column with edge-fade effect */}
-        <div className="relative flex flex-1 items-center justify-center">
+        <div className="relative flex w-full min-w-0 flex-1 items-center justify-center">
           {/* Ambient glow behind the photo */}
           <div
             aria-hidden="true"

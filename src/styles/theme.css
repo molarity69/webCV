@@ -400,6 +400,20 @@ flip-card:focus-visible .flip-card-inner {
   transform: scale(1.2);
 }
 
+@media (max-width: 767px) {
+  .hero-photo-wrapper {
+    transform: scale(1);
+    overflow: hidden !important;
+  }
+
+  .hero-photo-fade {
+    left: 50% !important;
+    top: 56% !important;
+    transform: translateX(-50%) scale(1.65);
+    transform-origin: center top;
+  }
+}
+
 /* Tailwind text-size utility overrides for better legibility */
 .text-xs {
   font-size: 0.8rem;
