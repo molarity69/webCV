@@ -1,20 +1,19 @@
-
 /**
  * @file HeroSection.tsx
  * @description Hero section with headline, CTA and full-body photo that fades at the edges into the page background.
  */
 
-import React from 'react'
-import { Download } from 'lucide-react'
-import { SocialLinks } from '../common/SocialLinks'
-import { VisitorCounter } from '../common/VisitorCounter'
+import React from 'react';
+import { Download } from 'lucide-react';
+import { SocialLinks } from '../common/SocialLinks';
+import { VisitorCounter } from '../common/VisitorCounter';
 
 /**
  * URL of the hero full-body photo.
  * TODO: Replace this placeholder URL with the hosted URL of Emmanouil's provided portrait.
  */
 const HERO_PHOTO_URL =
-  'https://pub-cdn.sider.ai/u/U0JJHJO1R42/web-coder/69b316c4fd11fbc8fca1d2b3/resource/261f5e9e-21d2-4b83-8572-f6f9ca677c96.png'
+  'https://res.cloudinary.com/dfxlovl4r/image/upload/v1773775525/19cf728e6bf18_qbbdgw.png';
 
 /**
  * HeroSection component displaying the main introduction and full-body photo.
@@ -43,13 +42,13 @@ export const HeroSection: React.FC = () => {
           <p className="max-w-xl text-sm leading-relaxed text-[var(--color-text-primary)] sm:text-base">
             <em>
               "Full Stack Engineer with 5+ years of shipping real things — from
-              IoT defibrillator networks, to
-              high-traffic platforms serving 2.5 million users, to a
-              point-and-click adventure game on Steam. I architect backends,
-              sculpt frontends, mentor teams, gesture-recognize your wrist
-              movements, and occasionally make my colleagues question whether
-              they need a senior dev or a stand-up comedian. Greek by birth,
-              Engineer by obsession, polymath by stubbornness."
+              IoT defibrillator networks, to high-traffic platforms serving 2.5
+              million users, to a point-and-click adventure game on Steam. I
+              architect backends, sculpt frontends, mentor teams,
+              gesture-recognize your wrist movements, and occasionally make my
+              colleagues question whether they need a senior dev or a stand-up
+              comedian. Greek by birth, Engineer by obsession, polymath by
+              stubbornness."
             </em>
           </p>
 
@@ -98,7 +97,7 @@ export const HeroSection: React.FC = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

@@ -3,37 +3,37 @@
  * @description Projects grid showcasing shipped work and in-progress ideas.
  */
 
-import React from 'react'
-import { ExternalLink, Wrench } from 'lucide-react'
+import React from 'react';
+import { ExternalLink, Wrench } from 'lucide-react';
 
 /**
  * Flag controlling visibility of the Void Merge project card.
  * Toggle VOID_MERGE_ENABLED to true when game is live.
  */
-const VOID_MERGE_ENABLED = false
+const VOID_MERGE_ENABLED = false;
 
 /**
  * Single project card information.
  */
 interface Project {
   /** Project title. */
-  title: string
+  title: string;
   /** Short human description. */
-  description: string
+  description: string;
   /** Optional status badge, e.g., In Development. */
-  statusBadge?: string
+  statusBadge?: string;
   /** Whether the project should be visually featured. */
-  featured?: boolean
+  featured?: boolean;
   /** List of tech stack labels. */
-  tech: string[]
+  tech: string[];
   /** Optional external link. */
-  link?: string
+  link?: string;
   /** CTA label, if a link is present. */
-  ctaLabel?: string
+  ctaLabel?: string;
   /** Optional banner placeholder label. */
-  bannerLabel?: string
+  bannerLabel?: string;
   /** Optional banner image URL. If provided, renders an <img> instead of the text placeholder. */
-  bannerImage?: string
+  bannerImage?: string;
 }
 
 /**
@@ -48,18 +48,28 @@ const BASE_PROJECTS: Project[] = [
     link: 'https://store.steampowered.com/app/1088610/Aurora_The_Lost_Medallion__The_Cave/',
     ctaLabel: 'View on Steam →',
     bannerLabel: '[ AURORA BANNER IMAGE ]',
-    bannerImage: 'https://pub-cdn.sider.ai/u/U0JJHJO1R42/web-coder/69b316c4fd11fbc8fca1d2b3/resource/d42046ed-4e63-4665-8e6a-39dbc5dc0115.jpg',
+    bannerImage:
+      'https://res.cloudinary.com/dfxlovl4r/image/upload/v1773775486/noema_games_aurora_the_lost_medallion_the_cave_banner_ifbh3n.jpg',
   },
   {
     title: 'NESOI Platform (EU-Funded)',
     description:
       'Main Front & Backend Developer for the New Energy Solutions Optimised for Islands platform — matchmaking, social networking, chat, e-learning, and profile customization for European islands.',
-    tech: ['MEAN Stack', 'MongoDB', 'Express', 'Angular', 'Node.js', 'Matchmaking Algorithms', 'Moodle', 'Matomo'],
+    tech: [
+      'MEAN Stack',
+      'MongoDB',
+      'Express',
+      'Angular',
+      'Node.js',
+      'Matchmaking Algorithms',
+      'Moodle',
+      'Matomo',
+    ],
     link: 'https://www.nesoi.eu/nef-platform',
     ctaLabel: 'Visit platform →',
     bannerLabel: '[ NESOI FEATURED BANNER ]',
     bannerImage:
-      'https://pub-cdn.sider.ai/u/U0JJHJO1R42/web-coder/69b316c4fd11fbc8fca1d2b3/resource/ee757a7e-815f-4628-8f20-c4d28db2fc71.jpg',
+      'https://res.cloudinary.com/dfxlovl4r/image/upload/v1773775485/fullcolor-fulltext-horizontal-rgb_1_mqtxky.jpg',
   },
   {
     title: 'Gesture Recognition Thesis',
@@ -68,6 +78,9 @@ const BASE_PROJECTS: Project[] = [
     tech: ['Java', 'Android', 'SVM', '$3', 'FFT', 'SAX', 'Signal Processing'],
     link: 'https://github.com/molarity69/Thesis111',
     ctaLabel: 'View on GitHub →',
+    bannerLabel: '[ THESIS FEATURED BANNER ]',
+    bannerImage:
+      'https://res.cloudinary.com/dfxlovl4r/image/upload/v1773775684/huawei-watch-2_cufxie.png',
   },
   {
     title: 'Smart AED Network',
@@ -75,13 +88,13 @@ const BASE_PROJECTS: Project[] = [
       'Sole developer of a Smart Defibrillator (AED) locator network — created for the Municipality of Drama. Real-time MQTT backend, geospatial Ionic app, and emergency alert infrastructure.',
     tech: ['Node.js', 'MQTT', 'Ionic', 'Google Maps API', '4G Pub/Sub'],
   },
-]
+];
 
 /**
  * Optionally augmented list including Void Merge if enabled.
  */
 const getProjects = (): Project[] => {
-  const projects = [...BASE_PROJECTS]
+  const projects = [...BASE_PROJECTS];
 
   if (VOID_MERGE_ENABLED) {
     projects.splice(3, 0, {
@@ -91,11 +104,11 @@ const getProjects = (): Project[] => {
       tech: ['TypeScript', 'HTML5', 'Canvas / WebGL (planned)'],
       statusBadge: '🔧 In Development',
       ctaLabel: 'Stay tuned',
-    })
+    });
   }
 
-  return projects
-}
+  return projects;
+};
 
 /**
  * Tag pill for a technology label.
@@ -106,13 +119,13 @@ const TechBadge: React.FC<{ label: string }> = ({ label }) => (
   <span className="rounded-full bg-[color-mix(in_srgb,var(--color-accent-soft)_40%,transparent)] px-2 py-0.5 text-[0.65rem] font-medium text-[var(--color-text-primary)]">
     {label}
   </span>
-)
+);
 
 /**
  * ProjectsSection renders the project cards grid.
  */
 export const ProjectsSection: React.FC = () => {
-  const projects = getProjects()
+  const projects = getProjects();
 
   return (
     <section
@@ -126,7 +139,8 @@ export const ProjectsSection: React.FC = () => {
             Projects
           </h2>
           <p className="mt-1.5 max-w-xl text-xs text-[var(--color-text-muted)]">
-            Shipped games, EU-funded platforms, research projects, and commercial IoT products.
+            Shipped games, EU-funded platforms, research projects, and
+            commercial IoT products.
           </p>
         </div>
       </div>
@@ -141,18 +155,18 @@ export const ProjectsSection: React.FC = () => {
           >
             {/* Banner placeholder area */}
             {project.bannerImage ? (
-  <div className="relative h-40 w-full overflow-hidden">
-    <img
-      src={project.bannerImage}
-      alt={`${project.title} banner`}
-      className="h-full w-full object-cover object-center"
-    />
-  </div>
-) : project.bannerLabel ? (
-  <div className="relative flex h-28 items-center justify-center bg-[radial-gradient(circle_at_10%_0%,var(--color-accent-soft),transparent_65%),color-mix(in_srgb,var(--color-bg-softer)_80%,black)] text-[0.7rem] font-mono uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-    {project.bannerLabel}
-  </div>
-) : null}
+              <div className="relative h-40 w-full overflow-hidden">
+                <img
+                  src={project.bannerImage}
+                  alt={`${project.title} banner`}
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
+            ) : project.bannerLabel ? (
+              <div className="relative flex h-28 items-center justify-center bg-[radial-gradient(circle_at_10%_0%,var(--color-accent-soft),transparent_65%),color-mix(in_srgb,var(--color-bg-softer)_80%,black)] text-[0.7rem] font-mono uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                {project.bannerLabel}
+              </div>
+            ) : null}
 
             {project.featured && (
               <span className="absolute right-4 top-3 rounded-full bg-[var(--color-accent-secondary-soft)] px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[var(--color-accent-secondary)]">
@@ -172,7 +186,9 @@ export const ProjectsSection: React.FC = () => {
                 <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">
                   {project.title}
                 </h3>
-                <p className="mt-1 text-xs text-[var(--color-text-muted)]">{project.description}</p>
+                <p className="mt-1 text-xs text-[var(--color-text-muted)]">
+                  {project.description}
+                </p>
               </header>
 
               <div className="mt-1 flex flex-wrap gap-1.5">
@@ -206,7 +222,7 @@ export const ProjectsSection: React.FC = () => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ProjectsSection
+export default ProjectsSection;
