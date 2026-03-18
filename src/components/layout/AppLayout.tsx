@@ -43,46 +43,34 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
   useEffect(() => {
     /**
-     * IntersectionObserver callback to update the active section id.
-     *
-     * Picks the section with the highest intersection ratio among those
-     * currently visible, instead of simply taking the last entry.
+     * Scroll-based spy: on every scroll tick, find the last section whose
+     * top edge has scrolled past the fixed header.  This works reliably
+     * regardless of section height or viewport size — no IntersectionObserver
+     * threshold / rootMargin tuning needed.
      */
-    const handleIntersect: IntersectionObserverCallback = (entries) => {
-      const visibleEntries = entries.filter(
-        (entry) => entry.isIntersecting && entry.target.id,
-      );
+    const handleScroll = () => {
+      const headerHeight =
+        parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue(
+            '--sidebar-header-height',
+          ),
+        ) || 56;
+      const offset = headerHeight + 32;
 
-      if (!visibleEntries.length) {
-        return;
+      let currentId = SPY_SECTION_IDS[0];
+      for (const id of SPY_SECTION_IDS) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= offset) {
+          currentId = id;
+        }
       }
-
-      const mostVisible = visibleEntries.reduce((prev, current) =>
-        current.intersectionRatio > prev.intersectionRatio ? current : prev,
-      );
-
-      const id = mostVisible.target.id;
-      if (id) {
-        setActiveSectionId(id);
-      }
+      setActiveSectionId(currentId);
     };
 
-    const observer = new IntersectionObserver(handleIntersect, {
-      // Account for the fixed header and favor the section closer to viewport center
-      threshold: 0.3,
-      rootMargin: '-80px 0px -40% 0px',
-    });
-
-    SPY_SECTION_IDS.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) {
-        observer.observe(el);
-      }
-    });
-
-    return () => {
-      observer.disconnect();
-    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const mainClassName = clsx(
