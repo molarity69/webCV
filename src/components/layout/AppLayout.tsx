@@ -138,7 +138,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
       {/* Main scrollable content */}
       <main className={mainClassName}>
-        <div className="mx-auto flex w-full max-w-6xl min-w-0 flex-col gap-12">
+        <div className="mx-auto flex max-w-6xl flex-col gap-12">
           {children}
         </div>
       </main>

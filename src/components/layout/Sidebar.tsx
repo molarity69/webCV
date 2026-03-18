@@ -79,26 +79,7 @@ const scrollToSection = (targetId: string): void => {
   });
 };
 
-const navigateToSection = (
-  targetId: string,
-  onCloseMobile: () => void,
-): void => {
-  const isMobileViewport =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(max-width: 767px)').matches;
 
-  if (!isMobileViewport) {
-    scrollToSection(targetId);
-    return;
-  }
-
-  onCloseMobile();
-
-  // Wait for the drawer close transition to start before scrolling.
-  window.setTimeout(() => {
-    scrollToSection(targetId);
-  }, 220);
-};
 
 /**
  * Sidebar navigation and social area.
@@ -141,7 +122,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             type="button"
             aria-label="Scroll to home section"
             onClick={() => {
-              navigateToSection('home', onCloseMobile);
+              scrollToSection('home');
+              onCloseMobile();
             }}
             className="inline-flex items-center gap-2 text-sm font-semibold tracking-[0.18em] uppercase text-[var(--color-text-primary)]"
           >
@@ -189,7 +171,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <button
                     type="button"
                     onClick={() => {
-                      navigateToSection(item.id, onCloseMobile);
+                      scrollToSection(item.id);
+                      onCloseMobile();
                     }}
                     className={`group relative flex items-center gap-3 rounded-full px-2.5 py-2 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-secondary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)] ${
                       isCollapsed
