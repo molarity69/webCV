@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://emmanouil-georgiou.vercel.app/sitemap.xml
+Sitemap: https://emmanouil-georgiou.dev/sitemap.xml
