@@ -138,9 +138,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
       {/* Main scrollable content */}
       <main className={mainClassName}>
-        <div className="mx-auto flex max-w-6xl flex-col gap-12">
-          {children}
-        </div>
+        <div className="mx-auto flex max-w-6xl flex-col gap-12">{children}</div>
       </main>
 
       {/* Hidden terminal easter egg overlay & trigger */}

@@ -79,8 +79,6 @@ const scrollToSection = (targetId: string): void => {
   });
 };
 
-
-
 /**
  * Sidebar navigation and social area.
  *
