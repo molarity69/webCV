@@ -72,11 +72,20 @@ const scrollToSection = (targetId: string): void => {
   const element = document.getElementById(targetId);
   if (!element) return;
 
-  // Use native scrollIntoView; header offset is handled via CSS scroll-margin-top.
-  element.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
-  });
+  // Compute the target scroll position ourselves so we always scroll the
+  // *window* — not an intermediate scroll-container that browsers like Chrome
+  // Mobile silently create when body has overflow-x styles.
+  const headerHeight =
+    parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue(
+        '--sidebar-header-height',
+      ),
+    ) || 56;
+
+  const top =
+    element.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+
+  window.scrollTo({ top, behavior: 'smooth' });
 };
 
 /**
