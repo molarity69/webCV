@@ -10,12 +10,12 @@ const SEO_CONFIG = {
   title: 'Emmanouil Georgiou — Full Stack Engineer | Portfolio & CV',
   description:
     'Full Stack Engineer with 5+ years of experience building high-traffic platforms, IoT systems, and games. Expertise in TypeScript, Angular, React, Node.js, NestJS, MongoDB, Docker & AWS.',
-  url: 'https://emmanouil-georgiou.vercel.app',
+  url: 'https://emmanouil-georgiou.dev',
   image:
-    'https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1/cv/og-image.jpg',
+    'https://res.cloudinary.com/dfxlovl4r/image/upload/v1773775525/19cf728e6bf18_qbbdgw.png',
   siteName: 'Emmanouil Georgiou — Portfolio',
   locale: 'en_US',
-  twitterHandle: '@EmmanuilG',
+  twitterHandle: '@molarity69',
 };
 
 /**
