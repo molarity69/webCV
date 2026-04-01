@@ -27,12 +27,12 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "You're a teacher... no no, you're a professor... no no... you're a Dean.",
-    name: 'Kostas Moschou',
+    name: 'Kostas Moschou - When asked about his role as a mentor',
     title: 'Team Lead & Full Stack Engineer, InstaShop',
   },
   {
     quote: 'I wish I had 10 more like you — work would be so much easier.',
-    name: 'Dimosthenis Ioannidis',
+    name: 'Dimosthenis Ioannidis - When praising his ability to handle complex tasks independently',
     title: 'Project Manager, CERTH/ITI',
   },
   {

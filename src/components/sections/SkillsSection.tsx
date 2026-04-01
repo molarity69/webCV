@@ -3,16 +3,16 @@
  * @description NBA 2K-style skill ratings section with animated stat bars and overall badge.
  */
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 
 /**
  * Single skill with a numeric rating.
  */
 interface Skill {
   /** Human-readable skill name. */
-  name: string
+  name: string;
   /** Rating out of 99. */
-  rating: number
+  rating: number;
 }
 
 /**
@@ -20,9 +20,11 @@ interface Skill {
  */
 interface SkillGroup {
   /** Group title, e.g., Frontend, Backend. */
-  title: string
+  title: string;
   /** List of skills within this group. */
-  skills: Skill[]
+  skills: Skill[];
+  /** Whether this tab gets the "Current Focus" highlight treatment. */
+  featured?: boolean;
 }
 
 /**
@@ -54,6 +56,19 @@ const SKILL_GROUPS: SkillGroup[] = [
     ],
   },
   {
+    title: 'Game Dev',
+    featured: true,
+    skills: [
+      { name: 'C# / Unity', rating: 80 },
+      { name: 'Unreal Engine (Blueprints)', rating: 68 },
+      { name: 'Game Architecture & ECS', rating: 76 },
+      { name: 'Shader Programming (HLSL)', rating: 62 },
+      { name: 'Multiplayer & Netcode', rating: 70 },
+      { name: 'Physics & Collision Systems', rating: 72 },
+      { name: 'Procedural Generation', rating: 65 },
+    ],
+  },
+  {
     title: 'Data & Infra',
     skills: [
       { name: 'MongoDB', rating: 85 },
@@ -66,27 +81,27 @@ const SKILL_GROUPS: SkillGroup[] = [
     ],
   },
   {
-    title: 'Game Dev & Other',
+    title: 'Other',
     skills: [
-      { name: 'C# / Unity', rating: 80 },
-      { name: 'C / C++', rating: 65 },
-      { name: 'Java', rating: 60 },
-      { name: 'Lua', rating: 55 },
       { name: 'Agile / Scrum', rating: 90 },
       { name: 'Technical Leadership', rating: 85 },
       { name: 'Code Reviews', rating: 88 },
+      { name: 'CI / CD Pipelines', rating: 78 },
+      { name: 'Technical Writing', rating: 80 },
+      { name: 'Mentoring & Onboarding', rating: 82 },
+      { name: 'System Design', rating: 76 },
     ],
   },
-]
+];
 
 /**
  * Props for an individual skill bar row.
  */
 interface SkillBarRowProps {
   /** Skill data to render. */
-  skill: Skill
+  skill: Skill;
   /** Whether the animation should be active (section in view). */
-  hasAnimated: boolean
+  hasAnimated: boolean;
 }
 
 /**
@@ -96,13 +111,17 @@ interface SkillBarRowProps {
  */
 const SkillBarRow: React.FC<SkillBarRowProps> = ({ skill, hasAnimated }) => {
   // Use rating normalized to 99 so the highest ratings can nearly fill the bar.
-  const normalizedWidth = `${(skill.rating / 99) * 100}%`
+  const normalizedWidth = `${(skill.rating / 99) * 100}%`;
 
   return (
     <div className="group space-y-1.5">
       <div className="flex items-baseline justify-between text-[0.8rem]">
-        <span className="font-medium text-[var(--color-text-primary)]">{skill.name}</span>
-        <span className="font-semibold text-[var(--color-accent-secondary)]">{skill.rating}</span>
+        <span className="font-medium text-[var(--color-text-primary)]">
+          {skill.name}
+        </span>
+        <span className="font-semibold text-[var(--color-accent-secondary)]">
+          {skill.rating}
+        </span>
       </div>
       <div className="relative h-2.5 overflow-hidden rounded-full bg-[color-mix(in_srgb,var(--color-bg-soft)_70%,black)]">
         <div
@@ -112,8 +131,8 @@ const SkillBarRow: React.FC<SkillBarRowProps> = ({ skill, hasAnimated }) => {
         <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/20 via-transparent to-transparent mix-blend-screen opacity-0 transition-opacity duration-500 group-hover:opacity-80" />
       </div>
     </div>
-  )
-}
+  );
+};
 
 /**
  * Badge displaying the overall rating (OVR) styled like a sports game stat.
@@ -122,49 +141,59 @@ const OverallBadge: React.FC = () => {
   return (
     <div className="relative inline-flex items-center gap-3 rounded-full border border-[var(--color-accent-secondary-soft)] bg-[color-mix(in_srgb,var(--color-bg-soft)_90%,black)] px-3 py-2 text-xs uppercase tracking-[0.18em]">
       <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_0%,var(--color-accent-secondary-soft),transparent_55%),color-mix(in_srgb,var(--color-bg-soft)_80%,black)] shadow-[0_0_20px_rgba(245,158,11,0.55)]">
-        <span className="text-lg font-extrabold text-[var(--color-accent-secondary)]">91</span>
+        <span className="text-lg font-extrabold text-[var(--color-accent-secondary)]">
+          91
+        </span>
         <span className="pointer-events-none absolute inset-0 rounded-full border border-[color-mix(in_srgb,var(--color-accent-secondary-soft)_60%,transparent)]" />
       </div>
       <div className="flex flex-col text-[0.6rem] text-[var(--color-text-muted)]">
-        <span className="font-semibold text-[var(--color-text-primary)]">Overall Rating</span>
+        <span className="font-semibold text-[var(--color-text-primary)]">
+          Overall Rating
+        </span>
         <span>Engineer archetype · Versatile generalist</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
 /**
- * SkillsSection component displaying grouped skills with animated stat bars.
+ * SkillsSection component displaying grouped skills with a tab interface.
  */
 export const SkillsSection: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement | null>(null)
-  const [hasAnimated, setHasAnimated] = useState(false)
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
-    const target = sectionRef.current
-    if (!target) return
+    const target = sectionRef.current;
+    if (!target) return;
 
     /**
      * IntersectionObserver callback to trigger bar animations once.
      */
-    const handleIntersect: IntersectionObserverCallback = (entries, observer) => {
-      const [entry] = entries
+    const handleIntersect: IntersectionObserverCallback = (
+      entries,
+      observer,
+    ) => {
+      const [entry] = entries;
       if (entry.isIntersecting) {
-        setHasAnimated(true)
-        observer.disconnect()
+        setHasAnimated(true);
+        observer.disconnect();
       }
-    }
+    };
 
     const observer = new IntersectionObserver(handleIntersect, {
       threshold: 0.3,
-    })
+    });
 
-    observer.observe(target)
+    observer.observe(target);
 
     return () => {
-      observer.disconnect()
-    }
-  }, [])
+      observer.disconnect();
+    };
+  }, []);
+
+  const activeGroup = SKILL_GROUPS[activeTab];
 
   return (
     <section
@@ -179,36 +208,99 @@ export const SkillsSection: React.FC = () => {
             Skill Ratings
           </h2>
           <p className="mt-1.5 max-w-xl text-xs text-[var(--color-text-muted)]">
-            NBA 2K-inspired stat card for a Full Stack Engineer. Ratings are out of 99 and grouped by domain.
+            NBA 2K-inspired stat card for a Full Stack Engineer. Ratings are out
+            of 99 and grouped by domain.
           </p>
         </div>
         <OverallBadge />
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {SKILL_GROUPS.map((group) => (
-          <div
-            key={group.title}
-            className="rounded-2xl border border-[color-mix(in_srgb,var(--color-border-soft)_85%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-soft)_92%,black)] p-4 shadow-[0_0_0_1px_rgba(15,23,42,0.7)]"
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
-                {group.title}
-              </h3>
-              <span className="rounded-full bg-[color-mix(in_srgb,var(--color-accent-soft)_50%,transparent)] px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[var(--color-accent-secondary)]">
-                {group.skills.length} stats
+      {/* Tab bar */}
+      <div
+        className="mb-5 flex flex-wrap gap-2"
+        role="tablist"
+        aria-label="Skill categories"
+      >
+        {SKILL_GROUPS.map((group, index) => {
+          const isActive = index === activeTab;
+          const isFeatured = group.featured;
+
+          return (
+            <button
+              key={group.title}
+              role="tab"
+              aria-selected={isActive}
+              aria-controls={`skill-panel-${index}`}
+              onClick={() => setActiveTab(index)}
+              className={[
+                'relative inline-flex items-center rounded-full px-4 py-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.14em] transition-all duration-300',
+                isActive
+                  ? 'bg-[var(--color-accent-secondary)] text-[var(--color-bg-main)] shadow-[0_0_16px_rgba(245,158,11,0.5)]'
+                  : 'border border-[color-mix(in_srgb,var(--color-border-soft)_60%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-soft)_90%,black)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-secondary-soft)] hover:text-[var(--color-text-primary)]',
+                isFeatured && !isActive
+                  ? 'border-[var(--color-accent-secondary-soft)] shadow-[0_0_12px_rgba(245,158,11,0.25)]'
+                  : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+            >
+              {group.title}
+              {isFeatured && (
+                <span
+                  className={[
+                    'ml-2 inline-flex items-center justify-center rounded-full px-1.5 py-0 text-[0.55rem] font-bold uppercase leading-none h-[1.25rem]',
+                    isActive
+                      ? 'bg-[var(--color-bg-main)] text-white'
+                      : 'bg-[var(--color-accent-secondary-soft)] text-[color-mix(in_srgb,var(--color-accent-secondary)_70%,black)]',
+                  ].join(' ')}
+                >
+                  Current Focus
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Active tab panel */}
+      <div
+        key={activeTab}
+        id={`skill-panel-${activeTab}`}
+        role="tabpanel"
+        className={[
+          'rounded-2xl border p-5 shadow-[0_0_0_1px_rgba(15,23,42,0.7)] transition-all duration-500 animate-in fade-in slide-in-from-bottom-2',
+          activeGroup.featured
+            ? 'border-[var(--color-accent-secondary-soft)] bg-[color-mix(in_srgb,var(--color-bg-soft)_92%,black)] shadow-[0_0_30px_rgba(245,158,11,0.15),0_0_0_1px_rgba(15,23,42,0.7)]'
+            : 'border-[color-mix(in_srgb,var(--color-border-soft)_85%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-soft)_92%,black)]',
+        ].join(' ')}
+      >
+        <div className="mb-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <h3 className="text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+              {activeGroup.title}
+            </h3>
+            {activeGroup.featured && (
+              <span className="rounded-full bg-[var(--color-accent-secondary)] px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-wider text-[var(--color-bg-main)] shadow-[0_0_10px_rgba(245,158,11,0.4)]">
+                🎯 Current Focus
               </span>
-            </div>
-            <div className="space-y-3">
-              {group.skills.map((skill) => (
-                <SkillBarRow key={skill.name} skill={skill} hasAnimated={hasAnimated} />
-              ))}
-            </div>
+            )}
           </div>
-        ))}
+          <span className="rounded-full bg-[color-mix(in_srgb,var(--color-accent-soft)_50%,transparent)] px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[var(--color-accent-secondary)]">
+            {activeGroup.skills.length} stats
+          </span>
+        </div>
+        <div className="space-y-3">
+          {activeGroup.skills.map((skill) => (
+            <SkillBarRow
+              key={skill.name}
+              skill={skill}
+              hasAnimated={hasAnimated}
+            />
+          ))}
+        </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default SkillsSection
+export default SkillsSection;

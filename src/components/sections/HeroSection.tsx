@@ -29,6 +29,21 @@ export const HeroSection: React.FC = () => {
         {/* Text column */}
         <div className="w-full min-w-0 flex-1 space-y-6">
           <div>
+            {/* Mobile avatar — visible only below md breakpoint */}
+            <div className="mb-4 flex items-center gap-4 md:hidden">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--color-accent-secondary-soft)] shadow-[0_0_16px_rgba(245,158,11,0.3)]">
+                <img
+                  src={HERO_PHOTO_URL}
+                  alt="Portrait of Emmanouil Georgiou"
+                  className="absolute h-auto w-[500%] max-w-none"
+                  style={{ top: '-30%', left: '-230%' }}
+                />
+              </div>
+              <p className="font-['Syne'] text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                Engineer · Generalist · Aspiring Polymath
+              </p>
+            </div>
+
             <h1 className="text-balance break-words font-['Syne'] text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
               <span className="hero-name-gradient bg-clip-text text-transparent">
                 Emmanouil Georgiou
@@ -52,22 +67,22 @@ export const HeroSection: React.FC = () => {
             </em>
           </p>
 
-          <div className="flex flex-wrap items-center gap-4">
-            {/* TODO: Link to hosted generic CV PDF */}
-            <a
-              href="#"
-              aria-label="Download CV"
-              className="btn-pill inline-flex items-center gap-2 px-5 py-2.5"
-            >
-              <Download size={16} />
-              <span>Download CV</span>
-            </a>
+          {/* <div className="flex flex-wrap items-center gap-4"> */}
+          {/* TODO: Link to hosted generic CV PDF */}
+          {/* <a */}
+          {/* href="#" */}
+          {/* aria-label="Download CV" */}
+          {/* className="btn-pill inline-flex items-center gap-2 px-5 py-2.5" */}
+          {/* > */}
+          {/* <Download size={16} /> */}
+          {/* <span>Download CV</span> */}
+          {/* </a> */}
 
-            <span className="text-xs italic text-[var(--color-text-muted)]">
-              👀 Future feature: Paste a job description → get an AI-tailored CV
-              + match score
-            </span>
-          </div>
+          {/* <span className="text-xs italic text-[var(--color-text-muted)]"> */}
+          {/* 👀 Future feature: Paste a job description → get an AI-tailored CV */}
+          {/* + match score */}
+          {/* </span> */}
+          {/* </div> */}
 
           <div className="mt-4 flex flex-wrap items-center gap-4">
             <SocialLinks variant="hero" />

@@ -43,7 +43,7 @@ const BASE_PROJECTS: Project[] = [
   {
     title: 'Aurora: The Lost Medallion — The Cave',
     description:
-      'A commercial point-and-click adventure game shipped on Steam. Built at Noema Games with Unity/C#, featuring optimized asset management and dynamic spawning systems.',
+      'A commercial point-and-click adventure game almost shipped on Steam. Built at Noema Games with Unity/C#, featuring optimized asset management and dynamic spawning systems.',
     tech: ['C#', 'Unity', 'Asset Optimization', 'Memory Management'],
     link: 'https://store.steampowered.com/app/1088610/Aurora_The_Lost_Medallion__The_Cave/',
     ctaLabel: 'View on Steam →',
@@ -214,7 +214,7 @@ export const ProjectsSection: React.FC = () => {
 
               {!project.link && (
                 <p className="mt-2 text-[0.7rem] text-[var(--color-text-muted)]">
-                  *No public link — commercial product.
+                  *No public link — archived product.
                 </p>
               )}
             </div>

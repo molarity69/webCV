@@ -3,24 +3,24 @@
  * @description Vertical timeline of professional experience with detailed role cards.
  */
 
-import React from 'react'
+import React from 'react';
 
 /**
  * Single experience entry in the vertical timeline.
  */
 interface Experience {
   /** Company name. */
-  company: string
+  company: string;
   /** Job title / role. */
-  title: string
+  title: string;
   /** Date range for the role. */
-  dateRange: string
+  dateRange: string;
   /** Location information. */
-  location: string
+  location: string;
   /** Optional company website URL. */
-  website?: string
+  website?: string;
   /** Bullet point highlights describing the role. */
-  bullets: string[]
+  bullets: string[];
 }
 
 /**
@@ -88,13 +88,15 @@ const EXPERIENCES: Experience[] = [
     location: 'Thessaloniki, Greece',
     website: 'https://noemagames.com',
     bullets: [
-      'Developed core gameplay loops, puzzle mechanics, and game levels for Aurora: The Lost Medallion — The Cave (shipped on Steam).',
+      'Developed core gameplay loops, puzzle mechanics, and game levels for Aurora: The Lost Medallion — The Cave (demo on Steam).',
+      'Developed game systems: inventory, dialogue, save/load, UI.',
+      "Assembled scenes with assets and animations from artists and following the director's vision, tying it all up with C# scripts.",
       'Resolved severe memory leaks from endlessly looping coroutines, saving critical CPU overhead.',
       'Engineered dynamic asset spawning/despawning and optimized 2D asset compression for reduced game footprint.',
       'Collaborated directly with artists and designers to translate creative vision into stable, production-ready features.',
     ],
   },
-]
+];
 
 /**
  * ExperienceSection renders a non-animated vertical timeline of roles.
@@ -112,8 +114,8 @@ export const ExperienceSection: React.FC = () => {
             Experience
           </h2>
           <p className="mt-1.5 max-w-xl text-xs text-[var(--color-text-muted)]">
-            A vertical snapshot of companies, products, and problems Emmanouil has shipped into the
-            world.
+            A vertical snapshot of companies, products, and problems Emmanouil
+            has shipped into the world.
           </p>
         </div>
       </div>
@@ -180,7 +182,7 @@ export const ExperienceSection: React.FC = () => {
         </ol>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ExperienceSection
+export default ExperienceSection;
