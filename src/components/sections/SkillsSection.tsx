@@ -60,12 +60,12 @@ const SKILL_GROUPS: SkillGroup[] = [
     featured: true,
     skills: [
       { name: 'C# / Unity', rating: 80 },
-      { name: 'Unreal Engine (Blueprints)', rating: 68 },
-      { name: 'Game Architecture & ECS', rating: 76 },
-      { name: 'Shader Programming (HLSL)', rating: 62 },
-      { name: 'Multiplayer & Netcode', rating: 70 },
-      { name: 'Physics & Collision Systems', rating: 72 },
-      { name: 'Procedural Generation', rating: 65 },
+      { name: 'Adventure Creator (Plugin)', rating: 72 },
+      { name: 'Game Architecture', rating: 76 },
+      { name: 'Asset Management', rating: 62 },
+      { name: 'Character Navigation', rating: 70 },
+      { name: 'Physics & Collision Systems', rating: 62 },
+      { name: 'Memory Management / Optimization', rating: 65 },
     ],
   },
   {
