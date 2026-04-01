@@ -135,6 +135,14 @@ const SkillBarRow: React.FC<SkillBarRowProps> = ({ skill, hasAnimated }) => {
 };
 
 /**
+ * Overall rating derived from all skills across all groups.
+ */
+const OVERALL_RATING = Math.round(
+  SKILL_GROUPS.flatMap((g) => g.skills).reduce((sum, s) => sum + s.rating, 0) /
+    SKILL_GROUPS.flatMap((g) => g.skills).length,
+);
+
+/**
  * Badge displaying the overall rating (OVR) styled like a sports game stat.
  */
 const OverallBadge: React.FC = () => {
@@ -142,7 +150,7 @@ const OverallBadge: React.FC = () => {
     <div className="relative inline-flex items-center gap-3 rounded-full border border-[var(--color-accent-secondary-soft)] bg-[color-mix(in_srgb,var(--color-bg-soft)_90%,black)] px-3 py-2 text-xs uppercase tracking-[0.18em]">
       <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_0%,var(--color-accent-secondary-soft),transparent_55%),color-mix(in_srgb,var(--color-bg-soft)_80%,black)] shadow-[0_0_20px_rgba(245,158,11,0.55)]">
         <span className="text-lg font-extrabold text-[var(--color-accent-secondary)]">
-          91
+          {OVERALL_RATING}
         </span>
         <span className="pointer-events-none absolute inset-0 rounded-full border border-[color-mix(in_srgb,var(--color-accent-secondary-soft)_60%,transparent)]" />
       </div>
